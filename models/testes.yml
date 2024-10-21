@@ -1,0 +1,29 @@
+
+version: 2
+
+models:
+    - name: inscrito
+      description: "A starter dbt model"
+      columns:
+          - name: nome
+            description: "The primary key for this table"
+            tests:
+                - unique
+
+    - name: stage_inscritos
+      description: "Dados de inscritos transformados"
+      columns:
+          - name: maiority
+            description: "True se a idade for maior que 21"
+            tests:
+                - not_null
+  
+    - name: analise_inscritos
+      description: "Dados de inscritos confiavéis"
+      columns:
+          - name: maiority
+            description: "Agrupamento de inscritos por maior de idade"
+            tests:
+              - accepted_values: 
+                 values: [true, false]
+                 quote: false
